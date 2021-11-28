@@ -65,47 +65,28 @@ function Ajax(){
     
       data.forEach( function (obj){
         if(obj.completed==true){  
-          $('#demo').append('<input class="form-check-input" type="checkbox" disabled="true" checked value="'+obj.id+'"/> '+obj.title +'<br/>');
+          $('#demo').append('<input class="form-check-input" type="checkbox" disabled checked value="'+obj.id+'"/> '+obj.title +'<br/>');
         }
         else{  
-          $('#demo').append('<input class="form-check-input" id="check" type="checkbox" value="'+obj.id+'"/> '+obj.title +'<br/>');
+          $('#demo').append('<input class="form-check-input" id="check"  onclick="check_();" type="checkbox" value="'+obj.id+'"/> '+obj.title +'<br/>');
+        }
+      });
+      let count=0;
+      let target=5;
+      $('input[type="checkbox"]').on('change',function(){
+        if($(this).prop('checked')==true){
+        count++;
+        if(count==target){
+            alert(`Congrats! You have completed ${target} tasks!`);
+          }
+        }
+        else{
+          count--;
         }
       });
     }
-    
-    
-    /*$(document).ready(function(){
-      
-      $('body').on('change', 'input[type="checkbox"]',function(){
-    
-        var promise = new Promise(function(resolve, reject){
-    
-          var count = $('input[type=checkbox]:checked').not(':disabled').length;
-          if(count==5){
-              resolve("Congrats. 5 Tasks heve been Successfully Completed");
-          }else{
-              reject(`you have completed ${count} Tasks`);
-          }
-    
-        });
-        promise.then(function(s){
-           alert(s);
-          })
-          .catch(function(e){
-          console.log(e);
-        })
-      });
-    })*/
-    
-    /*$(document).ready(function(){
-
-        var $checkboxes = $('#check  input[type="checkbox"]');
-            
-        $checkboxes.change(function(){
-            var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
-            if(countCheckedCheckboxes==5)
-            {
-                window.alert("you have selected 5 todos");
-            }
-        });
-    });*/
+   
+    // function check_(){
+    //   alert("hii");
+    // }
+   
